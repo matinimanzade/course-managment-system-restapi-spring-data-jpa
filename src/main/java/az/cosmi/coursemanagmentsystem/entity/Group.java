@@ -1,8 +1,8 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
+import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.grammars.hql.HqlParser;
 
 import java.util.Objects;
 import java.util.Set;
@@ -15,14 +15,28 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor // bu bos konstructor @Entity e lazimdir cunki,eger silsek compile time error alacayiq
 @AllArgsConstructor // bu konstruktor ise @Builder e lazimdir,eger silsek compile time error alacayiq
-public class Group {
+public class Group extends AbstractModel {
     @Id
     private String id;
+
     private String name;
-    @ManyToOne
-    private Teacher teacher;
-    @OneToMany
+
+    @ManyToMany
+    @JoinTable(name = "group_teacher",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private Set<Teacher> teachers;
+
+    @OneToMany(mappedBy = "group")
     private Set<Student> students;
+
+    @ManyToMany
+    @JoinTable(name = "group_subject",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id")
+    )
+    private Set<Subject> subjects;
 
     @Override
     public boolean equals(Object o) {

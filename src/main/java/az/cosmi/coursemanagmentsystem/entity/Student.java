@@ -16,7 +16,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Student {
     @Id
-    private String finCode;
+    private String id;
 
     private String name;
     private String surname;
@@ -24,10 +24,17 @@ public class Student {
     private String email;
     private String address;
 
-    @ManyToOne
-    private Teacher teacher;
+    @ManyToMany
+    @JoinTable(name = "student_teacher",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns =@JoinColumn(name = "teacher_id"))
+    private Set<Teacher> teachers;
 
-    @OneToMany(mappedBy = "finCode")
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    private Group group;
+
+    @ManyToMany(mappedBy = "students")
     private Set<Subject> subjects;
 
     @Override
@@ -35,12 +42,12 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Objects.equals(finCode, student.finCode);
+        return Objects.equals(id, student.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(finCode);
+        return Objects.hash(id);
     }
 }
 

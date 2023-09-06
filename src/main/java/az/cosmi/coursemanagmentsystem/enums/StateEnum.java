@@ -1,11 +1,7 @@
 package az.cosmi.coursemanagmentsystem.enums;
 
-import az.micos.coursemanagmentsystemspringandjpa.exceptions.StateNotFoundException;
-import lombok.Data;
+import az.cosmi.coursemanagmentsystem.exceptions.StateNotFoundException;
 import lombok.Getter;
-import lombok.Setter;
-
-import javax.swing.plaf.nimbus.State;
 import java.util.Arrays;
 
 @Getter

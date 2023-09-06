@@ -1,6 +1,6 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
-import az.micos.coursemanagmentsystemspringandjpa.model.abstracts.AbstractModel;
+import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 public class Teacher extends AbstractModel {
     @Id
-    private String finCode;
+    private String id;
 
     private String name;
     private String surname;
@@ -25,11 +25,14 @@ public class Teacher extends AbstractModel {
     private String email;
     private String address;
 
-    @OneToMany
+    @ManyToMany(mappedBy = "teachers")
     private Set<Student> students;
 
-    @OneToMany(mappedBy = "finCode")
+    @OneToMany(mappedBy = "teacher")
     private Set<Subject> subjects;
+
+    @ManyToMany(mappedBy = "teachers")
+    private Set<Group> groups;
 
     @Override
     public boolean equals(Object o) {
@@ -37,11 +40,11 @@ public class Teacher extends AbstractModel {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Teacher teacher = (Teacher) o;
-        return Objects.equals(finCode, teacher.finCode);
+        return Objects.equals(id, teacher.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), finCode);
+        return Objects.hash(super.hashCode(), id);
     }
 }

@@ -1,6 +1,6 @@
 package az.cosmi.coursemanagmentsystem.model.abstracts;
 
-import az.micos.coursemanagmentsystemspringandjpa.enums.StateEnum;
+import az.cosmi.coursemanagmentsystem.enums.StateEnum;
 import jakarta.persistence.Column;
 import lombok.*;
 
