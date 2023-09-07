@@ -1,6 +1,7 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
 import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,10 +29,11 @@ public class Teacher extends AbstractModel {
     @ManyToMany(mappedBy = "teachers")
     private Set<Student> students;
 
-    @OneToMany(mappedBy = "teacher")
+    @ManyToMany(mappedBy = "teachers")
     private Set<Subject> subjects;
 
     @ManyToMany(mappedBy = "teachers")
+
     private Set<Group> groups;
 
     @Override

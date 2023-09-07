@@ -1,5 +1,6 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
+import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,10 +12,9 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Student extends AbstractModel {
     @Id
     private String id;
 
@@ -24,17 +24,17 @@ public class Student {
     private String email;
     private String address;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "student_teacher",
             joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns =@JoinColumn(name = "teacher_id"))
+            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     private Set<Teacher> teachers;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
     private Group group;
 
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = CascadeType.ALL)
     private Set<Subject> subjects;
 
     @Override

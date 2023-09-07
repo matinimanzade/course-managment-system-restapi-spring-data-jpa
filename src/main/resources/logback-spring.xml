@@ -4,8 +4,17 @@
 
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
+
+            <highlighting>
+                <mappings>
+                    <mapping level="ERROR" foreground="RED" background="WHITE" />
+                    <mapping level="WARN"  foreground="YELLOW" background="BLUE" />
+                    <mapping level="INFO"  foreground="WHITE" background="GREEN" />
+                </mappings>
+            </highlighting>
+
             <Pattern>
-                %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+                %highlight(%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}) - %msg%n
             </Pattern>
         </layout>
     </appender>

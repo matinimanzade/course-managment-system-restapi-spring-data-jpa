@@ -2,8 +2,11 @@ package az.cosmi.coursemanagmentsystem.model.abstracts;
 
 import az.cosmi.coursemanagmentsystem.enums.StateEnum;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.MappedSuperclass;
 import lombok.*;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,9 +15,10 @@ import java.util.Objects;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@MappedSuperclass
 public abstract class AbstractModel {
     @Column(name = "created_time")
-    private LocalDateTime createdTime;
+    private LocalDateTime createdTime = LocalDateTime.now();
     @Column(name = "state")
     private StateEnum state;
 

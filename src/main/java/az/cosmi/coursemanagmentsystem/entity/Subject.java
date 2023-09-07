@@ -23,16 +23,16 @@ public class Subject extends AbstractModel {
 
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "teacher_id")
-    @JsonIgnore
-    private Teacher teacher;
+    @ManyToMany
+    @JoinTable(name = "subject_teacher",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns =@JoinColumn(name = "teacher_id"))
+    private Set<Teacher> teachers;
 
     @ManyToMany
     @JoinTable(name = "subject_student",
             joinColumns = @JoinColumn(name = "subject_id"),
             inverseJoinColumns =@JoinColumn(name = "student_id"))
-    @JsonIgnore
     private Set<Student> students;
 
     @ManyToMany(mappedBy = "subjects")

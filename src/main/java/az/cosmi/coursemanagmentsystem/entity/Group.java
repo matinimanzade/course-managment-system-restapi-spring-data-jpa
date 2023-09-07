@@ -1,14 +1,15 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
 import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "group")
+@Entity(name = "Group")
+@Table(name = "groups")
 @Getter
 @Setter
 @ToString
