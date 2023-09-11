@@ -1,24 +1,27 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Entity(name = "Mail")
-@Table(name = "mail")
+@Entity(name = "Email")
+@Table(name = "email")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 public class Email {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String from;
-    private String to;
+
+    @OneToOne(mappedBy = "email")
+    private Student _from;
+
+    private String _to;
     private String subject;
     private String message;
     private LocalDateTime createDate = LocalDateTime.now();

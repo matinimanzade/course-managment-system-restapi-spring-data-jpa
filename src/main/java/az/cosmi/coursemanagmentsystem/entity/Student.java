@@ -1,6 +1,7 @@
 package az.cosmi.coursemanagmentsystem.entity;
 
 import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,20 +22,26 @@ public class Student extends AbstractModel {
     private String name;
     private String surname;
     private String phoneNumber;
-    private String email;
     private String address;
+
+    @OneToOne
+    @JoinColumn(name = "email_id")
+    private Email email;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "student_teacher",
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    @JsonBackReference
     private Set<Teacher> teachers;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "group_id")
+    @JsonBackReference
     private Group group;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "students", cascade = CascadeType.ALL)
+    @JsonBackReference
     private Set<Subject> subjects;
 
     @Override

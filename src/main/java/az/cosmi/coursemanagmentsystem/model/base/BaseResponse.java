@@ -4,7 +4,8 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class ResponseModel<T> {
+@Builder
+public class BaseResponse<T> {
     T data;
     String message;
 }

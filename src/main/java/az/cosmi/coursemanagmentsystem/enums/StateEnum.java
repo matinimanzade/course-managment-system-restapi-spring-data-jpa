@@ -1,6 +1,6 @@
 package az.cosmi.coursemanagmentsystem.enums;
 
-import az.cosmi.coursemanagmentsystem.exceptions.StateNotFoundException;
+import az.cosmi.coursemanagmentsystem.exceptions.notfound.StateNotFoundException;
 import lombok.Getter;
 import java.util.Arrays;
 

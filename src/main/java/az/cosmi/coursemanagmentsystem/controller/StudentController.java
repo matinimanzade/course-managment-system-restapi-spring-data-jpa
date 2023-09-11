@@ -1,10 +1,12 @@
 package az.cosmi.coursemanagmentsystem.controller;
 
 import az.cosmi.coursemanagmentsystem.entity.Student;
-import az.cosmi.coursemanagmentsystem.model.ResponseModel;
+import az.cosmi.coursemanagmentsystem.exceptions.alredyexsist.StudentAlredyExsistException;
+import az.cosmi.coursemanagmentsystem.model.base.BaseResponse;
 import az.cosmi.coursemanagmentsystem.service.inter.StudentServiceInter;
-import lombok.*;
-import org.springframework.http.ResponseEntity;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
@@ -12,22 +14,27 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/student")
-@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class StudentController {
-    private final StudentServiceInter studentService;
+    StudentServiceInter studentService;
+
+    @Autowired
+    public StudentController(StudentServiceInter studentService) {
+        this.studentService = studentService;
+    }
 
     @PostMapping("/create")
-    public void createStudent(@RequestBody Student student) {
+    public void createStudent(@RequestBody Student student) throws StudentAlredyExsistException {
         studentService.create(student);
     }
 
-    @GetMapping("/getAll")
+    @GetMapping("/get-all")
     public Set<Student> getAllStudent() {
         return studentService.getAll();
     }
 
-    @GetMapping("/getById")
-    public ResponseModel<Student> getById(@RequestParam String id) {
+    @GetMapping("/get-by-id")
+    public BaseResponse<Student> getById(@RequestParam String id) {
         return studentService.getById(id);
     }
 

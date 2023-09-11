@@ -1,4 +1,4 @@
-package az.cosmi.coursemanagmentsystem.model.dto.student;
+package az.cosmi.coursemanagmentsystem.model.dto.student.create;
 
 import lombok.Getter;
 import lombok.Setter;

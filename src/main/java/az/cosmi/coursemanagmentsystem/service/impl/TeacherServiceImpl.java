@@ -1,7 +1,7 @@
 package az.cosmi.coursemanagmentsystem.service.impl;
 
 import az.cosmi.coursemanagmentsystem.entity.Teacher;
-import az.cosmi.coursemanagmentsystem.model.ResponseModel;
+import az.cosmi.coursemanagmentsystem.model.base.BaseResponse;
 import az.cosmi.coursemanagmentsystem.service.inter.TeacherServiceInter;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class TeacherServiceImpl implements TeacherServiceInter {
     }
 
     @Override
-    public ResponseModel<Teacher> getById(String id) {
+    public BaseResponse<Teacher> getById(String id) {
         return null;
     }
 

@@ -2,6 +2,7 @@ package az.cosmi.coursemanagmentsystem.entity;
 
 import az.cosmi.coursemanagmentsystem.model.abstracts.AbstractModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,6 +28,7 @@ public class Teacher extends AbstractModel {
     private String address;
 
     @ManyToMany(mappedBy = "teachers")
+    @JsonManagedReference
     private Set<Student> students;
 
     @ManyToMany(mappedBy = "teachers")

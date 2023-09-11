@@ -1,7 +1,7 @@
 package az.cosmi.coursemanagmentsystem.service.impl;
 
 import az.cosmi.coursemanagmentsystem.entity.Group;
-import az.cosmi.coursemanagmentsystem.model.ResponseModel;
+import az.cosmi.coursemanagmentsystem.model.base.BaseResponse;
 import az.cosmi.coursemanagmentsystem.service.inter.GroupServiceInter;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class GroupServiceImpl implements GroupServiceInter {
     }
 
     @Override
-    public ResponseModel<Group> getById(String id) {
+    public BaseResponse<Group> getById(String id) {
         return null;
     }
 
