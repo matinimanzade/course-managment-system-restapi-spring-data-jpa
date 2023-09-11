@@ -7,9 +7,8 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class StudentCreateRequestDTO {
+public class OnlyStudentCreateRequestDTO {
     private String id;
-
     private String name;
     private String surname;
     private String phoneNumber;
